@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { createServer } from 'http';
-import { getAllUsers, getUserById, createUser, updateUser } from './model/userController.js';
+import { getAllUsers, getUserById, createUser, updateUser, deleteUser } from './model/userController.js';
 import { getReqData } from './utils/helpers.js';
 
 const PORT = process.env.PORT || 5000;
@@ -74,9 +74,30 @@ export const app = () => {
           res.end(JSON.stringify({ message: err.message }));
         }
       }
+    };
+
+    if (req.url.match(/\/api\/users\/\w+/) && req.method === 'DELETE') {
+      const id = req.url.split('/')[3];
+      try {
+        const deletedUser = await deleteUser(id);
+        res.writeHead(200, {
+          'Content-Type': 'application/json',
+        });
+        res.end(JSON.stringify(deletedUser));
+      } catch(err) {
+        if (err.message === 'Invalid id') {
+          res.writeHead(400, {
+            'Content-Type': 'application/json',
+          });
+          res.end(JSON.stringify({ message: err.message }));
+        } else {
+          res.writeHead(404, {
+            'Content-Type': 'application/json',
+          });
+          res.end(JSON.stringify({ message: err.message }));
+        }
+      }
     }
-
-
   });
   server.listen(PORT, () => {
     console.log(`Server starts listening port ${PORT}`);

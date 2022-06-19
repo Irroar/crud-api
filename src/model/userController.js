@@ -45,7 +45,6 @@ export const updateUser = async (id, reqBody) => {
   return new Promise((resolve, reject) => {
     if (uuidValidate(id)) {
       const userIndex = usersdb.findIndex(item => item.id === id);
-      console.log(reqBody)
       if (userIndex !== -1) {
         // TODO: validate the reqBody
         for (let [key, value] of Object.entries(reqBody)) {
@@ -59,5 +58,22 @@ export const updateUser = async (id, reqBody) => {
       reject(new Error('Invalid id'));
     }
   });
+};
+
+export const deleteUser = async (id) => {
+  return new Promise((resolve, reject) => {
+    if (uuidValidate(id)) {
+      const userIndex = usersdb.findIndex(item => item.id === id);
+      if (userIndex !== -1) {
+        const deletedUser = usersdb[userIndex];
+        usersdb.splice(userIndex, 1);
+        resolve(deletedUser);
+      } else {
+        reject(new Error('User not found'));
+      }   
+    } else {
+      reject(new Error('Invalid id'));
+    }
+  })
 }
 
