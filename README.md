@@ -49,10 +49,10 @@ npm run start:dev
 
 - API path `/user`:
 
-  - **GET** `/user` or `/user/${userId}` return all persons or person with corresponding `personId`
-  - **POST** `/user` creates record about new person and store it in database
-  - **PUT** `/user/${userId}` updates record about existing person
-  - **DELETE** `/user/${userId}` deletes record about existing person from database
+  - **GET** `/user` or `/user/${userId}` return all users or user with corresponding `personId`
+  - **POST** `/user` creates record about new user and store it in database
+  - **PUT** `/user/${userId}` updates record about existing user
+  - **DELETE** `/user/${userId}` deletes record about existing user from database
 
 - Persons are stored as `objects` that have following properties:
   - `id` — unique identifier (`string`, `uuid`) generated on server side
