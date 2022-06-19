@@ -1,2 +1,3 @@
-console.log('hello')
-console.log('hello2')
+import { app } from './server.js';
+
+app();
