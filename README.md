@@ -1,5 +1,5 @@
-Simple CRUD API
-
+# Users CRUD API in Node.JS with Horizontal scaling
+  
 ### Requirements
 
 - Nodejs v16.x
@@ -19,19 +19,13 @@ git clone https://github.com/Irroar/crud-api.git
 cd crud-api
 ```
 
-3. Change branch
-
-```bash
-git checkout dev
-```
-
-4. Install dependencies
+3. Install dependencies
 
 ```bash
 npm install
 ```
 
-5. Fill in .env
+4. Fill in .env
 
 ```js
 PORT=***
@@ -42,7 +36,10 @@ PORT=***
 1. Run server with nodemon
 
 ```bash
-npm run start:dev
+npm run start:dev - Development mode
+npm run start:prod - Production mode
+npm run start:multi - Multi mode - horizontal scaling for application
+npm run test - tests
 ```
 
 ### Endpoints
@@ -56,6 +53,6 @@ npm run start:dev
 
 - Persons are stored as `objects` that have following properties:
   - `id` — unique identifier (`string`, `uuid`) generated on server side
-  - `name` — person's name (`string`, **required**)
+  - `username` — person's name (`string`, **required**)
   - `age` — person's age (`number`, **required**)
   - `hobbies` — person's hobbies (`array` of `strings` or empty `array`, **required**)
